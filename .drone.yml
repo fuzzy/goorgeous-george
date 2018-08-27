@@ -1,14 +1,14 @@
 ---
 pipeline:
   build:
-    app:
+    backend:
       image: golang
       environment:
         - GOPATH=/drone
       commands:
         - go get -v .
         - go build -v .
-    container:
+    frontend:
       image: docker
       commands:
         - docker build .
