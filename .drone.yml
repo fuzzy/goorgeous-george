@@ -1,13 +1,9 @@
 ---
 pipeline:
   build:
-    image: golang:$$GOVERS
+    image: golang
     environment:
       - GOPATH=/drone
     commands:
       - go get -v .
-matrix:
-  GOVERS:
-    - latest
-    - 1.10.3
-    - 1.9.7
+
