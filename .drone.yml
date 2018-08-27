@@ -7,7 +7,8 @@ pipeline:
     commands:
       - apk add go git build-base docker
       - go get -v .
-      - go build -v .
+      - go build -x -v .
+      - go version
       #- docker build .
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
