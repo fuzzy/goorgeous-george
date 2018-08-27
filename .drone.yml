@@ -6,4 +6,6 @@ pipeline:
       - GOPATH=/drone
     commands:
       - go get -v .
+      - go build -v .
+      - docker build .
 
