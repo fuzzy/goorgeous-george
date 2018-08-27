@@ -8,6 +8,7 @@ pipeline:
       commands:
         - go get -v .
         - go build -v .
+        
     frontend:
       image: docker
       commands:
