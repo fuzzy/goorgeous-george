@@ -1,5 +1,6 @@
 ---
-build:
-  image: golang
-  commands:
-    - go get -v .
+pipeline:
+  build:
+    image: golang
+    commands:
+      - go get -v .
