@@ -1,8 +1,13 @@
 ---
 pipeline:
   build:
-    image: golang
+    image: golang:$$golang
     environment:
       - GOPATH=/drone
     commands:
       - go get -v .
+  matrix:
+    golang:
+      - latest
+      - 1.10.3
+      - 1.9.7
