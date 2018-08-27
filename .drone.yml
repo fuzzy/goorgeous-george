@@ -5,9 +5,9 @@ pipeline:
       image: golang
       environment:
         - GOPATH=/drone
-        commands:
-          - go get -v .
-          - go build -v .
+      commands:
+        - go get -v .
+        - go build -v .
     container:
       image: docker
       commands:
