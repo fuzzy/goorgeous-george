@@ -1,18 +1,14 @@
 ---
 pipeline:
   build:
-    backend:
-      image: golang
-      environment:
-        - GOPATH=/drone
-      commands:
-        - go get -v .
-        - go build -v .
-        
-    frontend:
-      image: docker
-      commands:
-        - docker build .
-      volumes:
-        - /var/run/docker.sock:/var/run/docker.sock
+    image: alpine
+    environment:
+      - GOPATH=/drone
+    commands:
+      - apk add golang docker
+      - go get -v .
+      - go build -v .
+      - docker build .
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
 
