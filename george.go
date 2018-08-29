@@ -1,19 +1,19 @@
 package main
 
 import (
-	"os"
 	"fmt"
-	"log"
-	"html"
 	"io/ioutil"
+	"log"
 	"net/http"
+	"os"
+	"strings"
 
-	"gopkg.in/yaml.v2"
 	"github.com/chaseadamsio/goorgeous"
+	"gopkg.in/yaml.v2"
 )
 
 type Config struct {
-	OrgDir string `yaml:"org_dir"`
+	OrgDir    string `yaml:"org_dir"`
 	StaticDir string `yaml:"static_dir"`
 }
 
@@ -35,42 +35,46 @@ func ReadConfig() *Config {
 }
 
 func ServeStatic(w http.ResponseWriter, r *http.Request) {
+	log.Printf("1: %s\n", r.URL.Path)
 	fmt.Fprintf(w, "data")
+	// if _, e := os.Stat()
+}
+
+func Index(w http.ResponseWriter, r *http.Request) {
+	cfg := ReadConfig()
+	fmt.Fprintf(w, "<html><body><h1>Index</h1><hr /><ul>")
+	fn, er := ioutil.ReadDir(cfg.OrgDir)
+	if er != nil {
+		log.Println(er)
+	}
+	for _, f := range fn {
+		if f.Name()[len(f.Name())-4:] == ".org" {
+			fmt.Fprintf(w, "<li><a href=\"/org/%s\">%s</a></li>", f.Name(), f.Name())
+		}
+	}
+	fmt.Fprintf(w, "</ul></body></html>")
 }
 
 func ServeTheOrgs(w http.ResponseWriter, r *http.Request) {
 	cfg := ReadConfig()
-	if len(html.EscapeString(r.URL.Path)) == 1 {
-		fmt.Fprintf(w, "<html><body><h1>Index</h1><hr /><ul>")
-		fn, er := ioutil.ReadDir(cfg.OrgDir)
-		if er != nil {
-			log.Fatal(er)
+	_fname := strings.Split(r.URL.Path, "/")[2:][0]
+	fmt.Fprintf(w, "<html><body>")
+	fname := fmt.Sprintf("%s/%s", cfg.OrgDir, _fname)
+	log.Println("Rendering:", fname)
+	if _, err := os.Stat(fname); err == nil {
+		data, der := ioutil.ReadFile(fname)
+		if der != nil {
+			log.Println(der)
 		}
-		for _, f := range fn {
-			if f.Name()[len(f.Name())-4:] == ".org" {
-				fmt.Fprintf(w, "<li><a href=\"/%s\">%s</a></li>", f.Name(), f.Name())
-			}
-		}
-		fmt.Fprintf(w, "</ul></body></html>")
-	} else {
-		fmt.Fprintf(w, "<html><body>")
-		fname := fmt.Sprintf("%s%s", cfg.OrgDir, r.URL.Path)
-		if _, err := os.Stat(fname); err == nil {
-			data, der := ioutil.ReadFile(fname)
-			if der != nil {
-				log.Fatal(der)
-			}
-			output := goorgeous.OrgCommon([]byte(data))
-			fmt.Fprintf(w, string(output))
-		} 
-		fmt.Fprintf(w, "</body></html>")
+		output := goorgeous.OrgCommon([]byte(data))
+		fmt.Fprintf(w, string(output))
 	}
+	fmt.Fprintf(w, "</body></html>")
 }
 
 func main() {
 	// Register the route functions
-	http.HandleFunc("/", ServeTheOrgs)
-	http.HandleFunc("/static", ServeStatic)
+	http.HandleFunc("/", Router)
 
 	// Output and start serving
 	log.Println("Serving on 0.0.0.0:8081")
