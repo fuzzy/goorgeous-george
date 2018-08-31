@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>{{.Title}}</title>
+    <style>
+      #content{
+          width: 50%;
+          position: absolute;
+          top: 25px;
+          left: 25%;
+          bottom: 25px;
+          background: #d1d1d1;
+          padding: 10px;
+          overflow:auto;
+      }
+      table{
+          border: 1px solid black;
+          padding: 10px;
+      }
+      tr{padding: 2px;}
+      td{padding: 2px;}
+      tr:nth-child(odd){background: #eeeeee;}
+      tr:nth-child(even){background: #afafaf;}
+      h1{color:#2769aa;}
+      h2{color:#275988;}
+      h3{color:#275966;}
+      .TODO{color:red;}
+      .DONE{color:green;text-decoration:line-through;}
+      .tags{color:#348693;text-decoration:underline;}
+    </style>
+  </head>
+  <body>
+    <div id="content">
+      {{.Payload}}
+    </div>
+  </body>
+</html>
