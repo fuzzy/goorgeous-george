@@ -12,7 +12,7 @@ import (
 	"github.com/chaseadamsio/goorgeous"
 )
 
-func ServeTheOrgsOld(w http.ResponseWriter, r *http.Request) {
+func ServeTheOrgsRaw(w http.ResponseWriter, r *http.Request) {
 	cfg := ReadConfig()
 	_fname := strings.Split(r.URL.Path, "/")[2:][0]
 	fmt.Fprintf(w, "<html><body>")
@@ -33,7 +33,6 @@ func ServeTheOrgs(w http.ResponseWriter, r *http.Request) {
 	cfg := ReadConfig()
 	_fname := strings.Split(r.URL.Path, "/")[2:][0]
 	fname := fmt.Sprintf("%s/%s", cfg.Content.OrgDir, _fname)
-	log.Println("Rendering:", fname)
 	if _, err := os.Stat(fname); err == nil {
 
 		// setup check()
@@ -52,7 +51,7 @@ func ServeTheOrgs(w http.ResponseWriter, r *http.Request) {
 		// read in template
 		_tmpl, ter := ioutil.ReadFile(fmt.Sprintf("%s/%s.html", cfg.Template.Dir, cfg.Template.Name))
 		if !check(ter, false) {
-			ServeTheOrgsOld(w, r)
+			ServeTheOrgsRaw(w, r)
 		}
 
 		// read in org doc
@@ -77,7 +76,7 @@ func ServeTheOrgs(w http.ResponseWriter, r *http.Request) {
 
 		// and fire this shit off to the browser
 		if !check(tmpl.Execute(w, _data), false) {
-			ServeTheOrgsOld(w, r)
+			ServeTheOrgsRaw(w, r)
 		}
 	}
 }
