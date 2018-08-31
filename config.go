@@ -26,7 +26,7 @@ type Config struct {
 
 func ReadConfig() *Config {
 	retv := &Config{}
-	fn := fmt.Sprintf("%s/george.yml", os.Getenv("PWD"))
+	fn := fmt.Sprintf("/config/george.yml")
 	if _, err := os.Stat(fn); err != nil {
 		log.Fatal(err)
 	}

@@ -1,7 +1,15 @@
-FROM golang
+FROM golang:alpine
 
-RUN mkdir -p /george/{bin,data}
-COPY george /george/bin
+RUN mkdir -p /data /config
+RUN mkdir -p /data/templates /data/org /data/static
+RUN mkdir -p /go/src/github.com/fuzzy/goorgeous-george
+
+COPY . /go/src/github.com/fuzzy/goorgeous-george/
+COPY george.yml /config/
 COPY run.sh /
 
-CMD run.sh
+RUN go get -v github.com/fuzzy/goorgeous-george
+
+EXPOSE 8080
+  
+CMD /run.sh

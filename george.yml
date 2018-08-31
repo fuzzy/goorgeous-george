@@ -4,9 +4,9 @@ network:
   port: 8080
 
 content:
-  org_dir: /home/fuzzy/.org
-  static_dir: /home/fuzzy/work/devel/george/static
+  org_dir: /data/org
+  static_dir: /data/static
 
 template:
   name: george 
-  dir: /home/fuzzy/work/devel/george/tmpl
+  dir: /data/templates

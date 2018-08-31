@@ -1,3 +1,2 @@
 #!/bin/sh
-cd /george/data
-../bin/george
+cd /config && goorgeous-george
