@@ -7,3 +7,5 @@
   ```
   $ go get -v github.com/fuzzy/goorgeous-george
   ```
+
+  Edit the george.yml file. It must be in the directory you run george from. Set it's values appropriately and start'er up.
