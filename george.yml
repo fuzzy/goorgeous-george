@@ -1,3 +1,12 @@
 ---
-org_dir: /home/fuzzy/work/devel/george/org
-static_dir: /home/fuzzy/work/devel/george/static
+network:
+  interface: 0.0.0.0
+  port: 8080
+
+content:
+  org_dir: /home/fuzzy/.org
+  static_dir: /home/fuzzy/work/devel/george/static
+
+template:
+  name: george 
+  dir: /home/fuzzy/work/devel/george/tmpl

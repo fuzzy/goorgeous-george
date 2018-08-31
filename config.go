@@ -10,10 +10,18 @@ import (
 )
 
 type Config struct {
-	OrgDir       string `yaml:"org_dir"`
-	StaticDir    string `yaml:"static_dir"`
-	TemplateDir  string `yaml:"template_dir"`
-	TemplateName string `yaml:"template"`
+	Network struct {
+		Interface string `yaml:"interface"`
+		Port      string `yaml:"port"`
+	} `yaml:"network"`
+	Content struct {
+		OrgDir    string `yaml:"org_dir"`
+		StaticDir string `yaml:"static_dir"`
+	} `yaml:"content"`
+	Template struct {
+		Dir  string `yaml:"dir"`
+		Name string `yaml:"name"`
+	} `yaml:"template"`
 }
 
 func ReadConfig() *Config {
