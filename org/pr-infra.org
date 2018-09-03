@@ -1,0 +1,43 @@
+#+TODO: TODO WIP STALLED DONE CANCELLED
+* TODO [#P] [0/9] Get devel/infra pipeline in place            :infra:active:
+** WIP [#A] Update x64nNN systems to latest installed versions, and get docker installed
+  SCHEDULED: <2018-08-21 Tue>
+  - Note taken on [2018-08-22 Wed 08:24] \\
+    building kernels with all the proper NAT options for iptables use by docker currently on x64n02 and 03, 01 is done.
+  - Note taken on [2018-08-21 Tue 23:11] \\
+    have @world @system run going on x64n01, installing docker on x64n02
+  :LOGBOOK:
+  CLOCK: [2018-08-22 Wed 08:35]--[2018-08-22 Wed 09:00] =>  0:25
+  CLOCK: [2018-08-22 Wed 08:15]--[2018-08-22 Wed 08:35] =>  0:20
+  CLOCK: [2018-08-21 Tue 23:12]--[2018-08-21 Tue 23:37] =>  0:25
+  CLOCK: [2018-08-21 Tue 17:51]--[2018-08-21 Tue 18:16] =>  0:25
+  :END:
+** STALLED [#A] Get docker prod swarm in place
+   SCHEDULED: <2018-08-21 Tue>
+   - Note taken on [2018-08-21 Tue 17:26] \\
+     x64n01 is a bit out of date, updating portage and starting @system and @world builds
+** TODO [#A] Get docker dev swarm in place 
+   SCHEDULED: <2018-08-21 Tue>
+** TODO [#B] Get docker swarms documented :docs:
+** TODO [#A] Get salt-master dockerized and in prod swarm
+** TODO [#A] Get dev and prod docker swarms up and documented
+** TODO [#B] Get GoGS dockerized, and setup in HA fashion on prod swarm
+** TODO [#B] Get Drone server and at least 2 agents setup in the dev swarm
+** TODO [#C] Re-visit all services and dockerize urrything
+** TODO [#C] Get collectd-docker instances running and get instrumentation
+
+#+BEGIN: kanban :mirrored nil
+| TODO                                                                                 | WIP                                                                          | STALLED                        | DONE | DEPRECATED | CANCELLED |
+|--------------------------------------------------------------------------------------+------------------------------------------------------------------------------+--------------------------------+------+------------+-----------|
+| [[[0/9] Get devel/infra pipeline in place][[0/9] Get devel/infra pipeline in place]] |                                                                              |                                |      |            |           |
+|                                                                                      | [[Update x64nNN systems to latest installed versions, and get docker installed][Update x64nNN systems to latest installed versions, and get docker installed]] |                                |      |            |           |
+|                                                                                      |                                                                              | [[Get docker prod swarm in place][Get docker prod swarm in place]] |      |            |           |
+| [[Get docker dev swarm in place][Get docker dev swarm in place]]                                                        |                                                                              |                                |      |            |           |
+| [[Get docker swarms documented][Get docker swarms documented]]                                                         |                                                                              |                                |      |            |           |
+| [[Get salt-master dockerized and in prod swarm][Get salt-master dockerized and in prod swarm]]                                         |                                                                              |                                |      |            |           |
+| [[Get dev and prod docker swarms up and documented][Get dev and prod docker swarms up and documented]]                                     |                                                                              |                                |      |            |           |
+| [[Get GoGS dockerized, and setup in HA fashion on prod swarm][Get GoGS dockerized, and setup in HA fashion on prod swarm]]                           |                                                                              |                                |      |            |           |
+| [[Get Drone server and at least 2 agents setup in the dev swarm][Get Drone server and at least 2 agents setup in the dev swarm]]                        |                                                                              |                                |      |            |           |
+| [[Re-visit all services and dockerize urrything][Re-visit all services and dockerize urrything]]                                        |                                                                              |                                |      |            |           |
+| [[Get collectd-docker instances running and get instrumentation][Get collectd-docker instances running and get instrumentation]]                        |                                                                              |                                |      |            |           |
+#+END:

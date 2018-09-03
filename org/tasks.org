@@ -1,0 +1,8 @@
+* TODO [#C] replace/augment alarm clock sitch             :personal:purchase:
+* TODO [#C] get new watch and watchband
+* TODO [#C] rescue asus chromebook, (ie: finish devuan build)  :laptop:fixme:
+  - Note taken on [2018-08-17 Fri 10:30] \\
+    Building the image on amd64 fails, with a exec-format error. Could try to debug through but will probably just try to get the build going on arm32.
+  - Note taken on [2018-08-17 Fri 10:28] \\
+    have a docker image that needs to be made for devuan
+

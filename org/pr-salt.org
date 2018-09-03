@@ -1,0 +1,7 @@
+* [#P] SaltStack project (00005)                          :infra:active:
+:PROPERTIES:
+:ORDERED: t
+:END:
+
+T.H.W.A.P. Local area salt-stack documentation.
+

@@ -1,0 +1,73 @@
+#+TODO: TODO WIP | DONE DEPRECATED
+
+* [#E] Infrastructure project Kanban
+
+#+BEGIN: kanban :mirrored nil :match "infra"
+| TODO                                                     | WIP | STALLED | DONE | DEPRECATED | CANCELLED |
+|----------------------------------------------------------+-----+---------+------+------------+-----------|
+| [[Dockerize salt-master][Dockerize salt-master]]                                    |     |         |      |            |           |
+| [[Saltify docker swarm setup][Saltify docker swarm setup]]                               |     |         |      |            |           |
+| [[Saltify docker installation][Saltify docker installation]]                              |     |         |      |            |           |
+| [[Saltify docker swarm(s) setup][Saltify docker swarm(s) setup]]                            |     |         |      |            |           |
+| [[Saltify dockerized gogs][Saltify dockerized gogs]]                                  |     |         |      |            |           |
+| [[Saltify dockerized drone-ci][Saltify dockerized drone-ci]]                              |     |         |      |            |           |
+| [[Saltify dockerized metrics stack][Saltify dockerized metrics stack]]                         |     |         |      |            |           |
+| [[Saltify dockerized FEK stack][Saltify dockerized FEK stack]]                             |     |         |      |            |           |
+| [[research monitoring solutions (look at prometheus first)][research monitoring solutions (look at prometheus first)]] |     |         |      |            |           |
+#+END:
+
+* [#E] Development project Kanban
+
+#+BEGIN: kanban :mirrored nil :match "devel"
+| TODO                                                     | WIP | STALLED | DONE                                | DEPRECATED | CANCELLED |
+|----------------------------------------------------------+-----+---------+-------------------------------------+------------+-----------|
+| [[research monitoring solutions (look at prometheus first)][research monitoring solutions (look at prometheus first)]] |     |         |                                     |            |           |
+| [[static file support in george][static file support in george]]                            |     |         |                                     |            |           |
+|                                                          |     |         | [[get html template support worked up][get html template support worked up]] |            |           |
+|                                                          |     |         | [[get css looking like not shit][get css looking like not shit]]       |            |           |
+#+END:
+
+
+* [0/8] [#P] Saltstack Project                              :saltstack:infra:
+
+The Saltstack infrastructure for T.H.W.A.P. consists of three environments: devel, test, and prod. There are three different Docker
+swarms, one for each of these environments. Devel consists of arm32 nodes, many cores, not a lot of ram. Test consists of arm64 nodes,
+double the ram, about half the cores as arm32. Prod consists of amd64 boxen, lotta ram, lotta cores...well enough.
+
+** TODO [#A] Dockerize salt-master                                   :active:
+** TODO [#A] Saltify docker swarm setup                              :active:
+** TODO [#A] Saltify docker installation                             :active:
+** TODO [#A] Saltify docker swarm(s) setup                           :active:
+** TODO [#A] Saltify dockerized gogs                                 :active:
+** TODO [#A] Saltify dockerized drone-ci                             :active:
+** TODO [#A] Saltify dockerized metrics stack                        :active:
+** TODO [#A] Saltify dockerized FEK stack                            :active:
+
+* [0/1] [#P] Research and Development                     :RandD:infra:devel:
+** TODO [#B] research monitoring solutions (look at prometheus first) :active:
+
+* [/] [#P] G.O.A.T. Project                                      :goat:devel:
+
+The Garden and Outdoor Automation Toolkit is a suite of tools to facilitate information gathering about an agricultural setup, and
+optionally integrations for various bits of hardware for the purpose of control automation. Good stuff.
+
+* [2/3] [#P] Goorgeous George                                  :george:devel:
+
+GoOrgEous George is a http server, that renders ORG files to HTML on the fly. The rendering isn't quite perfect, but there will be
+fixes incoming. I plan on using this in production to host my blogs if I can get the export quality up to par with ox-publish.
+
+** TODO [#Z] static file support in george                          :backlog:
+** DONE [#A] get html template support worked up                     :active:
+   CLOSED: [2018-08-30 Thu 20:08]
+   - CLOSING NOTE [2018-08-30 Thu 20:08] \\
+     this is done, and is working, will commit with some template changes to make the default a bit more readable
+
+** DONE [#A] get css looking like not shit                           :active:
+   CLOSED: [2018-08-30 Thu 20:50]
+   - CLOSING NOTE [2018-08-30 Thu 20:50] \\
+     got it looking decent enough, 90's colors. quite gaudy
+
+* [0/0] [#P] Unsorted Tasks                                        
+
+This is the INBOX for all tasks before they are categorized into their appropriate region in the projects file.
+

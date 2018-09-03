@@ -1,0 +1,9 @@
+* [#P] [1/2] GTD Workflow                                      :infra:active:
+
+Org-mode based GTD workflow documentaion.
+
+** WIP [#A] Write up documentation for the Org-mode GTD workflow
+** DONE [#C] set org-kanban keybindings in ~/.emacs.d/local/org-gtd.el
+  CLOSED: [2018-08-22 Wed 11:04]
+  - CLOSING NOTE [2018-08-22 Wed 11:04] \\
+    this is finished putting the docs in now
