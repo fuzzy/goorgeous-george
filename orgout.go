@@ -15,7 +15,6 @@ import (
 func ServeTheOrgsRaw(w http.ResponseWriter, r *http.Request) {
 	cfg := ReadConfig()
 	_fname := strings.Split(r.URL.Path, "/")[2:][0]
-	fmt.Fprintf(w, "<html><body>")
 	fname := fmt.Sprintf("%s/%s", cfg.Content.OrgDir, _fname)
 	log.Println("Rendering:", fname)
 	if _, err := os.Stat(fname); err == nil {
@@ -23,10 +22,8 @@ func ServeTheOrgsRaw(w http.ResponseWriter, r *http.Request) {
 		if der != nil {
 			log.Println(der)
 		}
-		output := goorgeous.OrgCommon([]byte(data))
-		fmt.Fprintf(w, string(output))
+		fmt.Fprintf(w, string(data))
 	}
-	fmt.Fprintf(w, "</body></html>")
 }
 
 func ServeTheOrgs(w http.ResponseWriter, r *http.Request) {
@@ -34,7 +31,6 @@ func ServeTheOrgs(w http.ResponseWriter, r *http.Request) {
 	_fname := strings.Split(r.URL.Path, "/")[2:][0]
 	fname := fmt.Sprintf("%s/%s", cfg.Content.OrgDir, _fname)
 	if _, err := os.Stat(fname); err == nil {
-
 		// setup check()
 		check := func(err error, fatal bool) bool {
 			if err != nil {
@@ -67,9 +63,11 @@ func ServeTheOrgs(w http.ResponseWriter, r *http.Request) {
 
 		// Create the payload
 		_data := struct {
+			Path    string
 			Title   string
 			Payload string
 		}{
+			Path:    fmt.Sprintf(_fname),
 			Title:   "GoOrgEous George",
 			Payload: string(output),
 		}

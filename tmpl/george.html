@@ -42,12 +42,14 @@
       }
     </style>
   </head>
-  <body>
+  <body onload="document.getElementById('raw').setAttribute('href','/raw/'+window.location.pathname.split('/').slice(2));">
     <div class="logo">
-      <img style="float:left;" src="https://kathleenhalme.com/images/japan-clipart-sumo-6.png" width="75px" height="75px">
+      <img style="float:left;" src="/static/george.png" width="75px" height="75px">
     <h1>GoOrgEous George</h1>
     </div>
-    <div class="breadcrumbs">[<a href="/">Home</a>]</div>
+    <div class="breadcrumbs">
+      [<a href="/">Home</a>]
+      [<a id="raw" href="#">Raw</a>]</div>
     <div class="content">
       {{.Payload}}
     </div>
