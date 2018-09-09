@@ -4,15 +4,20 @@
     <meta charset="UTF-8">
     <title>{{.Title}}</title>
     <style>
-      #content{
+      .content{
           width: 75%;
           position: relative;
           top: 25px;
-          left: 20%;
+	  left: 12%;
           bottom: 25px;
           background: #d1d1d1;
           padding: 10px;
           overflow:auto;
+      }
+      .breadcrumbs {
+	  position: relative;
+	  top: 25px;
+	  left: 13%;
       }
       table{
           border: 1px solid black;
@@ -29,19 +34,21 @@
       .DONE{color:green;text-decoration:line-through;}
       .tags{color:#348693;text-decoration:underline;}
       .logo{
-          float: left;
-          width: 1%;
+	  float: left;
+	  width: 100%;
           border: 0px;
           background: #ffffff;
+	  border-bottom: solid 1px black;
       }
     </style>
   </head>
   <body>
     <div class="logo">
-      <img src="https://kathleenhalme.com/images/japan-clipart-sumo-6.png" width="250px" height="250px">
-      <h1>GoOrgEous George</h1>
+      <img style="float:left;" src="https://kathleenhalme.com/images/japan-clipart-sumo-6.png" width="75px" height="75px">
+    <h1>GoOrgEous George</h1>
     </div>
-    <div id="content">
+    <div class="breadcrumbs">[<a href="/">Home</a>]</div>
+    <div class="content">
       {{.Payload}}
     </div>
   </body>
