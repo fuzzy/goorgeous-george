@@ -18,10 +18,10 @@ func Router(w http.ResponseWriter, r *http.Request) {
 		if len(_path) >= 2 {
 			ServeTheOrgs(w, r)
 		} else {
-			Index(w, r)
+			ServeTheIndex(w, r)
 		}
 	default:
-		Index(w, r)
+		ServeTheIndex(w, r)
 	}
 	// path := strings.Join(_path[:len(_path)-1], "/")
 	// fmt.Fprintf(w, "%+V", path)
