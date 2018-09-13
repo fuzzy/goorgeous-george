@@ -26,6 +26,11 @@ func Index(w http.ResponseWriter, r *http.Request) {
 func ServeTheIndex(w http.ResponseWriter, r *http.Request) {
 	cfg := ReadConfig()
 
+	if r.URL.Path == "/favicon.ico" {
+		http.ServeFile(w, r, fmt.Sprintf("%s%s", cfg.Content.OrgDir, r.URL.Path))
+		return
+	}
+	
 	// setup check()
 	check := func(err error, fatal bool) bool {
 		if err != nil {
@@ -49,7 +54,8 @@ func ServeTheIndex(w http.ResponseWriter, r *http.Request) {
 	tmpl, err := template.New("GoOrgEous George").Parse(string(_tmpl))
 	_ = check(err, true)
 
-	fn, er := ioutil.ReadDir(cfg.Content.OrgDir)
+	_path := fmt.Sprintf("%s%s", cfg.Content.OrgDir, r.URL.Path)
+	fn, er := ioutil.ReadDir(_path)
 	_ = check(er, true)
 	
 	output := ""
