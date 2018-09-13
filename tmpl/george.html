@@ -5,11 +5,10 @@
     <title>{{.Title}}</title>
     <style>
       .content{
-          width: 75%;
-          position: relative;
-          top: 25px;
-	  left: 12%;
-          bottom: 25px;
+          width: 98%;
+          position: absolute;
+          top: 10%;
+          bottom: 10%;
           background: #d1d1d1;
           padding: 10px;
           overflow:auto;
@@ -19,11 +18,39 @@
 	  top: 25px;
 	  left: 13%;
       }
+      .footer{
+          position: absolute;
+          text-align: center;
+          top: 90%;
+          width: 100%;
+      }
+      .footer-list-a{
+          position: absolute;
+          text-align: left;
+          top: 90%;
+          left: 20%;
+          width: 20%;
+      }
+      .footer-list-b{
+          position: absolute;
+          text-align: left;
+          top: 90%;
+          left: 40%;
+          width: 20%;
+      }
+      .footer-list-c{
+          position: absolute;
+          text-align: left;
+          top: 90%;
+          left: 60%;
+          width: 20%;
+      }
       table{
           width: 100%;
           border: 1px solid black;
           padding: 2px;
       }
+      ul{list-style-type:square;}
       tr{padding: 2px;}
       td{padding: 2px;}
       tr:nth-child(odd){background: #eeeeee;}
@@ -53,6 +80,27 @@
       [<a id="raw" href="#">Raw</a>]</div>
     <div class="content">
       {{.Payload}}
+    </div>
+    <div class="footer">
+      <hr />
+      <div class="footer-list-a">
+        <ul>
+          <li><a href="https://github.com/fuzzy/goorgeous-george">GitHub</a></li>
+          <li><a href="https://github.com/fuzzy/goorgeous-george/blob/master/README.md">README</a></li>
+        </ul>
+      </div>
+      <div class="footer-list-b">
+        <ul>
+          <li><a href="https://www.gnu.org/software/emacs/">Emacs</a></li>
+          <li><a href="https://www.orgmode.org/">Org Mode</a></li>
+        </ul>
+      </div>
+      <div class="footer-list-c">
+        <ul>
+          <li><a href="https://www.golang.org/">GoLang</a></li>
+          <li><a href="">GoOrgEous</a></li>
+        </ul>
+      </div>
     </div>
   </body>
 </html>
