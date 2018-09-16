@@ -62,7 +62,10 @@ func ServeTheIndex(w http.ResponseWriter, r *http.Request) {
 	for _, f := range fn {
 		if f.Name()[len(f.Name())-4:] == ".org" {
 			output = fmt.Sprintf("%s<li><a href=\"/org/%s\">%s</a></li>", output, f.Name(), f.Name())
+		} else {
+			output = fmt.Sprintf("%s<li><a href=\"%s\">%s</a></li>", output, f.Name(), f.Name())
 		}
+		
 	}
 	
 	// Create the payload
