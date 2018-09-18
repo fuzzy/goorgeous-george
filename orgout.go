@@ -28,8 +28,9 @@ func ServeTheOrgsRaw(w http.ResponseWriter, r *http.Request) {
 
 func ServeTheOrgs(w http.ResponseWriter, r *http.Request) {
 	cfg := ReadConfig()
-	_fname := strings.Split(r.URL.Path, "/")[2:][0]
+	_fname := strings.Join(strings.Split(r.URL.Path, "/")[2:], "/")
 	fname := fmt.Sprintf("%s/%s", cfg.Content.OrgDir, _fname)
+
 	if _, err := os.Stat(fname); err == nil {
 		// setup check()
 		check := func(err error, fatal bool) bool {
