@@ -3,6 +3,7 @@ package main
 import (
 	"log"
 	"fmt"
+	"strings"
 	"text/template"
 	"net/http"
 	"io/ioutil"
@@ -64,9 +65,10 @@ func ServeTheIndex(w http.ResponseWriter, r *http.Request) {
 			http.Redirect(w, r, fmt.Sprintf("/org%s/index.org", r.URL.Path), http.StatusFound)
 			return
 		}
-		
+
+		_path = strings.Join(strings.Split(r.URL.Path, "/")[2:], "/")
 		if f.Name()[len(f.Name())-4:] == ".org" {
-			output = fmt.Sprintf("%s<li><a href=\"/org/%s\">%s</a></li>", output, f.Name(), f.Name())
+			output = fmt.Sprintf("%s<li><a href=\"/org/%s/%s\">%s</a></li>", output, r.URL.Path, f.Name(), f.Name())
 		} else if f.Name() != "favicon.ico" {
 			output = fmt.Sprintf("%s<li><a href=\"%s\">%s</a></li>", output, f.Name(), f.Name())
 		}
