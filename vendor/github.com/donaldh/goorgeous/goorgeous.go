@@ -159,16 +159,27 @@ func OrgOptions(input []byte, renderer blackfriday.Renderer) []byte {
 			if len(matches) > 0 {
 				if string(matches[1]) == "END" {
 					switch marker {
-					case "QUOTE":
-						var tmpBuf bytes.Buffer
-						p.inline(&tmpBuf, tmpBlock.Bytes())
-						p.r.BlockQuote(&output, tmpBuf.Bytes())
 					case "CENTER":
 						var tmpBuf bytes.Buffer
 						output.WriteString("<center>\n")
 						p.inline(&tmpBuf, tmpBlock.Bytes())
 						output.Write(tmpBuf.Bytes())
 						output.WriteString("</center>\n")
+					case "COMMENT":
+						// Do nothing
+					case "EXAMPLE":
+						tmpBlock.WriteByte('\n')
+						p.r.BlockCode(&output, tmpBlock.Bytes(), syntax)
+					case "QUOTE":
+						var tmpBuf bytes.Buffer
+						p.inline(&tmpBuf, tmpBlock.Bytes())
+						p.r.BlockQuote(&output, tmpBuf.Bytes())
+					case "SRC":
+						tmpBlock.WriteByte('\n')
+						p.r.BlockCode(&output, tmpBlock.Bytes(), syntax)
+					case "VERSE":
+						tmpBlock.WriteByte('\n')
+						p.r.BlockQuote(&output, tmpBlock.Bytes())
 					default:
 						tmpBlock.WriteByte('\n')
 						p.r.BlockCode(&output, tmpBlock.Bytes(), syntax)
@@ -180,19 +191,26 @@ func OrgOptions(input []byte, renderer blackfriday.Renderer) []byte {
 
 			}
 			if marker != "" {
-				if marker != "SRC" && marker != "EXAMPLE" {
-					var tmpBuf bytes.Buffer
-					tmpBuf.Write([]byte("<p>\n"))
-					p.inline(&tmpBuf, data)
-					tmpBuf.WriteByte('\n')
-					tmpBuf.Write([]byte("</p>\n"))
-					tmpBlock.Write(tmpBuf.Bytes())
-
-				} else {
-					tmpBlock.WriteByte('\n')
+				switch marker {
+				case "COMMENT":
+					// Do nothing
+				case "CENTER":
+					fallthrough
+				case "EXAMPLE":
+					fallthrough
+				case "QUOTE":
+					fallthrough
+				case "SRC":
+					if tmpBlock.Len() != 0 {
+						tmpBlock.WriteByte('\n')
+					}
+					tmpBlock.Write(data)
+				case "VERSE":
+					tmpBlock.Write(data)
+					tmpBlock.WriteString("<br/>\n")
+				default:
 					tmpBlock.Write(data)
 				}
-
 			} else {
 				marker = string(matches[2])
 				syntax = string(matches[3])
@@ -523,7 +541,7 @@ func isPropertyDrawer(data []byte) bool {
 }
 
 // ~~ Dynamic Blocks
-var reBlock = regexp.MustCompile(`^#\+(BEGIN|END)_(\w+)\s*([0-9A-Za-z_\-]*)?`)
+var reBlock = regexp.MustCompile(`^\s*#\+(BEGIN|END)_(\w+)\s*([0-9A-Za-z_\-]*)?`)
 
 func isBlock(data []byte) bool {
 	return reBlock.Match(data)

@@ -30,11 +30,11 @@ Versions
 --------
 
 Currently maintained and recommended version of Blackfriday is `v2`. It's being
-developed on its own branch: https://github.com/russross/blackfriday/v2 and the
+developed on its own branch: https://github.com/russross/blackfriday/tree/v2 and the
 documentation is available at
 https://godoc.org/gopkg.in/russross/blackfriday.v2.
 
-It is `go get`-able via via [gopkg.in][6] at `gopkg.in/russross/blackfriday.v2`,
+It is `go get`-able via [gopkg.in][6] at `gopkg.in/russross/blackfriday.v2`,
 but we highly recommend using package management tool like [dep][7] or
 [Glide][8] and make use of semantic versioning. With package management you
 should import `github.com/russross/blackfriday` and specify that you're using
@@ -86,12 +86,16 @@ Usage
 For basic usage, it is as simple as getting your input into a byte
 slice and calling:
 
-    output := blackfriday.MarkdownBasic(input)
+```go
+output := blackfriday.MarkdownBasic(input)
+```
 
 This renders it with no extensions enabled. To get a more useful
 feature set, use this instead:
 
-    output := blackfriday.MarkdownCommon(input)
+```go
+output := blackfriday.MarkdownCommon(input)
+```
 
 ### v2
 
@@ -330,6 +334,12 @@ are a few of note:
 
 *   [LaTeX output](https://bitbucket.org/ambrevar/blackfriday-latex):
     renders output as LaTeX.
+
+*   [bfchroma](https://github.com/Depado/bfchroma/): provides convenience
+    integration with the [Chroma](https://github.com/alecthomas/chroma) code
+    highlighting library. bfchroma is only compatible with v2 of Blackfriday and
+    provides a drop-in renderer ready to use with Blackfriday, as well as
+    options and means for further customization.
 
 
 TODO

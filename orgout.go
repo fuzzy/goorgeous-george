@@ -9,7 +9,7 @@ import (
 	"strings"
 	"text/template"
 
-	"github.com/chaseadamsio/goorgeous"
+	"github.com/donaldh/goorgeous"
 )
 
 func ServeTheOrgsRaw(w http.ResponseWriter, r *http.Request) {
