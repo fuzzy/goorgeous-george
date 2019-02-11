@@ -29,17 +29,16 @@ func ServeTheStatic(w http.ResponseWriter, r *http.Request) {
  */
 func UpdateTheRepo() {
 	cfg := ReadConfig()
-	log.Println("Opening local repo:", cfg.Content.Base)
 	repo, err := git.PlainOpen(cfg.Content.Base)
 	if err != nil {
 		log.Fatal(err)
 	}
 	wdir, err := repo.Worktree()
-	err = wdir.Pull(&git.PullOptions{
-		Progress: os.Stdout,
-	})
+	err = wdir.Pull(&git.PullOptions{})
 	if err != nil {
-		log.Println(err)
+		log.Printf("%s: %s", cfg.Content.Base, err)
+	} else {
+		log.Printf("%s: updated successfully", cfg.Content.Base)
 	}
 }
 
