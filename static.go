@@ -35,9 +35,7 @@ func UpdateTheRepo() {
 	}
 	wdir, err := repo.Worktree()
 	err = wdir.Pull(&git.PullOptions{})
-	if err != nil {
-		log.Printf("%s: %s", cfg.Content.Base, err)
-	} else {
+	if err == nil {
 		log.Printf("%s: updated successfully", cfg.Content.Base)
 	}
 }
