@@ -1,0 +1,16 @@
+---
+network:
+  interface: 0.0.0.0
+  port: 8080
+
+git:
+  repo: https://github.com/fuzzy/
+git_webhook: true
+  
+content:
+  base_dir: /data
+  org_dir: org
+  static_dir: static
+  template:
+    name: george 
+    dir: templates

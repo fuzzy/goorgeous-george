@@ -1,17 +1,20 @@
 package main
 
 import (
-	"os"
 	"fmt"
 	"log"
-	"strings"
 	"net/http"
+	"os"
+	"strings"
+	"time"
+
+	"gopkg.in/src-d/go-git.v4"
 )
 
 func ServeTheStatic(w http.ResponseWriter, r *http.Request) {
 	cfg := ReadConfig()
 	_path := strings.Join(strings.Split(r.URL.Path, "/")[2:], "/")
-	_fname := fmt.Sprintf("%s/%s", cfg.Content.StaticDir, _path)
+	_fname := fmt.Sprintf("%s/%s/%s", cfg.Content.Base, cfg.Content.StaticDir, _path)
 	if _, e := os.Stat(_fname); e == nil {
 		http.ServeFile(w, r, _fname)
 	} else {
@@ -19,3 +22,32 @@ func ServeTheStatic(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
+/*
+ * Please understand, I am deeply ashamed of this. But don't worry, it will be going
+ * away. I'm working on webhook triggers to accept notifications of updates from github,
+ * gogs/gitea, gitlab etc. Please stay tuned.
+ */
+func UpdateTheRepo() {
+	cfg := ReadConfig()
+	log.Println("Opening local repo:", cfg.Content.Base)
+	repo, err := git.PlainOpen(cfg.Content.Base)
+	if err != nil {
+		log.Fatal(err)
+	}
+	wdir, err := repo.Worktree()
+	err = wdir.Pull(&git.PullOptions{
+		Progress: os.Stdout,
+	})
+	if err != nil {
+		log.Println(err)
+	}
+}
+
+func UpdateTheRepoThread() {
+	for {
+		time.Sleep(time.Minute * 1)
+		UpdateTheRepo()
+	}
+}
+
+// </this_particular_bit_of_shame>
